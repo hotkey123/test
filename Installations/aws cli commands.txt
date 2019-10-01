@@ -1,0 +1,51 @@
+CREATING A VPC (VIRTUAL PRIVATE CLOUD):-
+
+Create vpc - "aws ec2 create-vpc --cidr-block 10.1.0.0/16"
+
+List the DNS hostnames - "aws ec2 describe-vpc-attribute --vpc-id <vpc-id> --attribute enableDnsHostnames"
+
+Enable DNS hostnames - "aws ec2 modify-vpc-attribute --vpc-id <vpc-id> --enable-dns-hostnames "{\"Value\":true}""
+
+CREATE SUBNET:-
+
+Create-subnet - "aws ec2 create-subnet --vpc-id <vpc-id> --cidr-block 10.1.1.0/24"
+
+CREATE IGW:-
+
+Create an IGW - "aws ec2 create-internet-gateway"
+
+Attach IGW to VPC - "aws ec2 attach-internet-gateway --internet-gateway-id <igw-id> --vpc-id <vpc-id>"
+
+CREATE ROUTE TABLE:-
+
+Create Route Table - "aws ec2 create-route-table --vpc-id <vpc-id>"
+
+aws ec2 create-route --route-table-id <rtb-id> --destination-cidr-block 0.0.0.0/0 --gateway-id <igw-id>
+
+Describe route table  - "aws ec2 describe-route-tables --route-table-id <rtb-id> --output table"
+
+Associating route table to subnets - "aws ec2 associate-route-table --subnet-id <subnet-id> --route-table-id <rtb-id>"
+
+Map ip on launch - "aws ec2 modify-subnet-attribute --subnet-id <subnet-id> --map-public-ip-on-launch"
+
+CREATING A KEY-PAIR:-
+
+Creating a key pair - "aws ec2 create-key-pair --key-name <name> --query "KeyMaterial" --output text > "C:\AWS Home\AWS_Keypair.pem""
+
+CREATING A SECURITY GROUP:-
+
+Create Security group - "aws ec2 create-security-group --group-name hotkey --description "hotkey" --vpc-id <vpc-id>"
+
+To set INBound rules - "aws ec2 authorize-security-group-ingress --group-id <sg-id> --protocol tcp --port 22 --cidr 0.0.0.0/0"
+
+SETTING VPC ENDPOINT:-
+
+Create VPC endpoint - "aws ec2 create-vpc-endpoint --vpc-id <vpc-id> --service-name com.amazonaws.us-east-1.s3 --route-table-ids <rtb-id>"
+
+LAUNCHING AN INSTANCE:-
+
+create ec2 instance - "aws ec2 run-instances --image-id ami-0b898040803850657 --count 1 --instance-type t2.micro --key-name hotkey --subnet-id <subnet-id> --security-group-ids <sg-id> --associate-public-ip-address"
+
+TERMINATING AN INSTANCE:-
+
+Terminating Ec2 instances - "aws ec2 terminate-instances --instance-ids i-09024d4fceb38557a"

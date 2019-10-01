@@ -1,0 +1,53 @@
+TOMCAT INSTALLATION -- port:8090       Username=tomcat   password=s3cret
+
+--> yum install java-1.8* -y
+
+--> java -version
+
+--> wget http://apachemirror.wuchna.com/tomcat/tomcat-8/v8.5.43/bin/apache-tomcat-8.5.43.tar.gz
+
+--> mv apache-tomcat /opt
+
+--> tar -xvzf tomcat
+
+--> cd /apache-tomcat-8
+
+--> cd /bin/apache-tomcat-8
+
+--> chmod 777 startup.sh
+
+--> ./startup.sh
+
+--> goto browser "<public-ip>:8080"
+
+--> vi /opt/apache-tomcat-8.5.43/webapps/host-manager/META-INF/context.xml 
+       "Comment the value line"
+	   
+--> vi /opt/apache-tomcat-8.5.43/webapps/manager/META-INF/context.xml
+		"Comment the value line"
+		
+--> tomcatdown
+
+--> tomcatup
+
+--> vi tomcat-users.xml
+		<role rolename="manager-gui"/>
+        <role rolename="manager-script"/>
+        <role rolename="manager-jmx"/>
+        <role rolename="manager-status"/>
+        <user username="admin" password="admin" roles="manager-gui, manager-script, manager-jmx, manager-status"/>
+        <user username="deployer" password="deployer" roles="manager-script"/>
+        <user username="tomcat" password="s3cret" roles="manager-gui"/>
+		
+--> tomcatdown
+
+--> tomcatup
+
+-->  Goto Browser "<Public-ip>:8090
+
+To change the port number of tomcat
+
+--> cd /opt/apache-tomcat-8/conf/
+
+--> vi server.xml
+		"goto line number 69 and change "connector-port=8090""

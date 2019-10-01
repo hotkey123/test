@@ -1,0 +1,60 @@
+######### ANSIBLE SERVER INSTALLATION STEPS #########   username=ansible  password admin
+ 
+--> sudo yum update          ###updating the packages
+
+--> rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+
+--> yum install ansible -y
+
+--> ansible --version
+
+--> python --version
+
+--> useradd ansible
+
+--> passwd ansible
+
+--> vi /etc/ssh/sshd_config         ###For password Authentication
+		"Uncomment line no: 61"
+		"Comment line no: 63"
+		
+--> vi /etc/sudoers
+		"ansible	ALL=(ALL) 	NOPASSWD: ALL"   ### For admin credentials
+		
+--> systemctl restart sshd.service
+
+-->  su - ansible
+
+--> ssh-keygen
+
+--> cd .ssh
+
+--> ssh-copy-id <target server>
+		"It will prompt for a password"
+		
+--> ssh <target-server-ip>
+
+--> vi /etc/ansible/hosts
+		[all-hosts]
+		<target-server-ip>
+		
+--> ansible all -m ping
+
+
+
+######### ANSIBLE CLIENT CONFIGURING STEPS ##########     Username=ansible   password=admin
+
+--> sudo su -
+
+--> useradd ansible
+
+--> passwd ansible
+
+--> vi /etc/ssh/sshd_config         ###For password Authentication
+		"Uncomment line no: 61"
+		"Comment line no: 63"
+		
+--> vi /etc/sudoers
+		"ansible	ALL=(ALL) 	NOPASSWD: ALL"   ### For admin credentials
+		
+--> systemctl restart sshd.service

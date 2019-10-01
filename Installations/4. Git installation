@@ -1,0 +1,36 @@
+     #######  Git Installation  #######
+	 
+--> sudo yum update -y
+
+--> yum groupinstall "Development Tools"
+
+--> yum install -y gettext-devel openssl-devel perl-CPAN perl-devel zlib-devel curl-devel
+
+--> wget https://mirrors.edge.kernel.org/pub/software/scm/git/git-2.17.2.tar.gz
+
+--> cd /opt
+
+--> tar -xvzf git-2.17.2.tar.gz
+
+--> cd git-2.17.2
+
+--> ./configure --prefix=/usr/local/git
+
+--> make
+
+--> make install
+
+--> cd /usr/local/git/
+
+--> cd /bin
+
+--> ./git --version
+
+--> echo "export PATH=/usr/local/git/bin:$PATH" >> /etc/profile
+
+--> source /etc/profile
+
+--> git --version
+
+
+		##################  GIT INTEGRATION WITH JENKINS  ################

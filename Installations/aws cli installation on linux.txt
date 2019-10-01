@@ -1,0 +1,11 @@
+curl -O https://bootstrap.pypa.io/get-pip.py
+
+python get-pip.py --user
+
+export PATH=~/.local/bin:$PATH
+
+source ~/.bash_profile
+
+pip install awscli
+
+aws --version

@@ -1,0 +1,28 @@
+--> JENKINS URL = "http://3.222.251.150:8080/"       Username=admin  Password=password
+
+--> yum install java-1.8* -yum
+
+--> vi .bash_profile
+		JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.201.b09-0.amzn2.x86_64/
+		PATH=$PATH:$JAVA_HOME
+		
+--> java -version
+
+--> wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat/jenkins.repo
+
+--> rpm --import https://pkg.jenkins.io/redhat/jenkins.io.key
+
+--> yum install jenkins -y
+
+--> systemctl status jenkins
+
+--> systemctl start jenkins
+
+--> Goto Browser "<public-ip>:8080"
+		It will prompt for username and password
+		Username : admin
+		Password : /var/lib/jenkins/secrets/initialAdminPassword
+		
+--> Install plugins
+
+--> Installation completed
