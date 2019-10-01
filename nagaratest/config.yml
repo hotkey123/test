@@ -1,0 +1,8 @@
+---
+
+ImageId: 'ami-0b898040803850657'
+MinCount: 1
+MaxCount: 1
+InstanceType: 't2.micro'
+KeyName: 'hotkey'
+SubnetId: 'subnet-03d2957232f55007d'

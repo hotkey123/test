@@ -1,0 +1,18 @@
+version: "2"
+services:
+  mongo:
+    image: "mongo:3.4.0"
+    volumes:
+      - ./data:/home/ansadmin
+    ports:
+      - "27017:27017"
+  app:
+    image: "nginx"
+    restart: always
+    volumes:
+      - /etc/nginx/nginx.conf:/home/ansadmin/nagaratest/nginx.conf
+    ports:
+      - "90:80"
+    depends_on:
+      - mongo
+

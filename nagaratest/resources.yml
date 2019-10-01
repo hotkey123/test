@@ -1,0 +1,16 @@
+---
+- name: "creating instances"
+  action:
+          #  aws_access_key: AKIAIV2PVLO7AUE5ZJVQ
+    #    aws_secret_key: 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
+    module: ec2
+    region: us-east-1
+    instance_type: t2.micro
+    image: ami-0b898040803850657
+    wait: yes
+    group: hotkey
+    key_name: hotkey
+    count: 1
+    vpc_subnet_id: subnet-03d2957232f55007d
+    assign_public_ip: yes
+

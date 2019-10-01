@@ -1,0 +1,24 @@
+---
+
+- name: creating directory
+  file: path=/usr/java state=directory
+
+- name: unarchiving java
+  unarchive:
+    src: /home/ansadmin/jdk-8u221-linux-x64.tar.gz
+    dest: /usr/java/
+
+- name: set java envionment variables & update-alternatives
+  shell: "{{ item }}"
+  with_items:
+     - 'export JAVA_HOME=/usr/java/jdk1.8.0_221'
+     - 'export JAVA_BIN=/usr/java/jdk1.8.0_221/bin'
+     - 'export PATH=$PATH:$JAVA_HOME/bin'
+     - 'export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar'
+
+- name: unarchive a file that needs to be downloaded (added in 2.0)
+  unarchive:
+    src: http://apachemirror.wuchna.com/maven/maven-3/3.6.2/binaries/apache-maven-3.6.2-bin.tar.gz
+    dest: /opt/
+    remote_src: yes
+
