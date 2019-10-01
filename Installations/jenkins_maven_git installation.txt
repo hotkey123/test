@@ -1,0 +1,58 @@
+JAVA AND TOMCAT Installation on UBUNTU 16.04
+
+   tar -xvzf jdk-8u221-linux-x64.tar.gz -C /usr/java/
+   mkdir /usr/java
+   tar -xvzf jdk-8u221-linux-x64.tar.gz -C /usr/java/
+   export JAVA_HOME=/usr/java/jdk1.8.0_221
+   export JAVA_BIN=/usr/java/jdk1.8.0_221/bin
+   export PATH=$PATH:$JAVA_HOME/bin
+   export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
+   ln -s /usr/java/jdk1.8.0_221/bin/java /usr/bin/java
+   mkdir /opt/tomcat
+   tar -xvzf apache-tomcat-9.0.22.tar.gz -C /opt/tomcat/
+   cd /opt/tomcat/
+   ls
+   export CATALINA_HOME=/opt/tomcat/apache-tomcat-9.0.22
+   cd apache-tomcat-9.0.22/
+   cd bin
+   ls
+   sh startup.sh
+ 
+ 
+ maven instalaltion:
+cd /opt/
+   wget http://mirrors.estointernet.in/apache/maven/maven-3/3.6.2/binaries/apache-maven-3.6.2-bin.tar.gz
+   tar -xvzf apache-maven-3.6.2-bin.tar.gz maven/
+   tar -xvzf apache-maven-3.6.2-bin.tar.gz
+   mv apache-maven-3.6.2 maven
+   vi /etc/profile.d/mavenenv.sh
+   chmod +x /etc/profile.d/mavenenv.sh
+   source /etc/profile.d/mavenenv.sh
+   mvn --version
+
+   
+   jenkins installation:
+   
+    wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | sudo apt-key add -
+    sh -c 'echo deb https://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
+    apt-get update
+    apt-get install jenkins -y
+   
+    If java environment is not set edit /etc/profile file and add You can set your JAVA_HOME in /etc/profile as Petronilla Escarabajo suggests. But the preferred location for JAVA_HOME or any system variable is /etc/environment.
+
+Open /etc/environment in any text editor like nano or gedit and add the following line:
+
+JAVA_HOME="/usr/lib/jvm/open-jdk"
+(java path could be different)
+
+Use source to load the variables, by running this command:
+
+source /etc/environment
+Then check the variable, by running this command:
+
+echo $JAVA_HOME
+Update
+
+Usually most linux systems source /etc/environment by default. If your system doesn't do that add the following line to ~/.bashrc (Thanks @pje)
+
+source /etc/environment
