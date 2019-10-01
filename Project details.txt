@@ -1,0 +1,40 @@
+    ##########    PROJECT    ###########
+	
+git clone https://github.com/QT-DevOps/Project-References.git  ### For Project References
+
+APP - EC2 Machine  
+
+Requirements:
+
+1. requires internet for Load Balancer (nginx, Tomcat)
+2. From LB 3 APP servers has to be configured in different regions
+3. For these App servers there should be Database to take backups and storage
+4. For Monitoring purpose use Nagios servers to send Notification
+
+
+1. code in GitHub
+2. Use GitHub with Keys
+3. Setup Jenkins => Day Builds and Night Builds
+4. Day build should be for every 4 hours
+5. Nightd build daily once
+6. Integration Branch night build
+7. Uat Branch night build
+8. Release brenanch (manual)
+9. Juint reports
+10. store yur releases to artifactory
+11. terraform/cf from jenkins to create respective environments
+12. Environments: vm and container
+
+Tool stack:
+
+1. Github == maven and java
+2. CI == Jenkins
+3. Static code analysis == Sonarqube
+4. Release repo == Artifactory
+5. Infraprovision == Terraform/ Cf /packer
+6. CM == Chef, Ansible
+7. Container == Docker, Kubernetes/ecs
+8. Backups == Shell scripts for cron jobs
+9. Configure Mail servers for notification
+10. Monitoring == Nagios, ELK
+11. Ftp server and TFTP server from configuration Management tools
