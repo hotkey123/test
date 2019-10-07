@@ -1,0 +1,38 @@
+     ######### NEXUS INSTALLATION #########
+	 
+--> make sure java to be installed
+
+--> cd /opt	
+
+--> wget https://sonatype-download.global.ssl.fastly.net/nexus/3/nexus-3.0.2-02-unix.tar.gz
+
+--> tar -xvzf nexus-3.0.2-02-unix.tar
+
+--> mv nexus-3.0.2-02 nexus.gz
+
+--> sudo adduser nexus
+
+--> passwd nexus 
+admin
+admin
+
+--> chown -R nexus:nexus /opt/nexus
+
+--> vi /opt/nexus/bin/nexus.rc
+       run_as_user="nexus"
+	   
+--> sudo ln -s /opt/nexus/bin/nexus.rc /etc/init.d/nexus
+
+--> chmod 755 /etc/init.d/nexus
+
+--> cd /etc/init.d/
+
+--> chkconfig --add nexus
+
+--> chkconfig --levels 345 nexus on
+
+--> service nexus start
+
+--> service nexus status
+
+--> http://<nexus_ip>:8081
